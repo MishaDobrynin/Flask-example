@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ {{current_user.username}}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <h1>Settings: {{current_user.username}}</h1>
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Profile')">Profile</button>
+  <button class="tablinks" onclick="openCity(event, 'Security')">Security</button>
+  <button class="tablinks" onclick="openCity(event, 'DeleteAccount')">Delete account</button>
+</div>
+
+<div id="Profile" class="tabcontent">
+  <h3>Profile</h3>
+
+   <div class="input-group">
+  <span class="input-group-text">First and last name</span>
+  <input type="text" aria-label="First name" class="form-control">
+  <input type="text" aria-label="Last name" class="form-control">
+</div>
+</div>
+
+<div id="Security" class="tabcontent">
+  <h3>Security</h3>
+
+<div class="container">
+  <form action="/action_page.php">
+    <label for="usrname">Username</label>
+    <input type="text" id="usrname" name="usrname" required>
+
+    <label for="psw">Password</label>
+    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<div id="message">
+  <h3>Password must contain the following:</h3>
+  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+  <p id="number" class="invalid">A <b>number</b></p>
+  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div>
+
+</div>
+
+<div id="DeleteAccount" class="tabcontent">
+  <h3>DeleteAccount</h3>
+
+  <div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <label for="floatingInput">Email address</label>
+</div>
+<div class="form-floating">
+  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+  <label for="floatingPassword">Password</label>
+</div>
+
+</div>
+
+
+</div>
+
+<script src="{{url_for('static', filename='scripts/user_settings.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/user_password.js')}}"></script>
+
+{% endblock %}

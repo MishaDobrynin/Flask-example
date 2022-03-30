@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Posts
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Posts</h1>
+    {% if articles|length > 0%}
+    {% for post in articles %}
+    <div class="alert alert-info word-br box">
+
+        <h2><a href="/posts/{{post.id}}"> {{post.title}}</a></h2>
+        <p>{{post.intro}}</p>
+        <p>Author: {{post.author}}</p>
+        <p><b>DATE: {{post.date.date()}}</b></p>
+        <!--        <p><b>author: {{post.author}}</b></p>-->
+
+    </div>
+    {% endfor %}
+    {%else %}
+    <h2> There are no posts on the page yet</h2>
+    {% endif %}
+</div>
+<script src="{{url_for('static', filename='scripts/script_anim_posts.js')}}"></script>
+{% endblock %}

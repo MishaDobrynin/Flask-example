@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{article.title}}
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5 word-br">
+    <h1>{{article.title}}</h1>
+    <div class="alert alert-info">
+        <p>{{article.text}}</p>
+        <p>Author: {{article.author}}</p>
+        <p><b>Date: {{article.date.date()}}</b></p>
+      {% if current_user.is_authenticated and current_user.username == article.author %}
+        <a href="/posts/{{article.id}}/delete" class="btn btn-danger"> Delete</a>
+        <a href="/posts/{{article.id}}/update" class="btn btn-info"> Edit</a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

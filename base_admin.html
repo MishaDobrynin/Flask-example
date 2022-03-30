@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/signin.css')}}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<div>
+    <header>
+        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+            <nav class="d-inline-flex mt-md-2 ms-md-auto">
+                <a class="me-3 py-2 btn btn-outline-secondary" href="/">Home</a>
+                <a class="me-3 py-2 btn btn-outline-secondary" href="/about">About</a>
+                <a class="me-3 py-2 btn btn-outline-secondary" href="/posts">Posts</a>
+                {% if current_user.username|length > 0%}
+                <a class="me-3 py-2 btn btn-outline-info" href="/create_post">Create</a>
+
+                <div class="dropdown">
+                    <a class="me-3 py-2 btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                       id="dropdownMenuLink"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/sl9site.png" alt="mdo" width="32" height="32"
+                             class="rounded-circle">
+                        {{current_user.username}}
+                    </a>
+
+                    <ul class="dropdown-menu text-small btn" aria-labelledby="dropdownUser1"
+                        style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(0px, -34px, 0px);"
+                        data-popper-placement="top-start">
+                        <li><a class="dropdown-item" href="{{url_for('dashboard')}}">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('logout')}}">Sign out</a></li>
+                    </ul>
+                </div>
+                {%else %}
+
+                <a class="me-3 py-2 btn btn-outline-primary" href="/login">login</a>
+                {% endif %}
+
+
+            </nav>
+        </div>
+    </header>
+
+    {% block body %}{% endblock %}
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+</html>
