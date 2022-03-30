@@ -1,0 +1,4 @@
+include allThatIKnow/schema.sql
+graft Flask_example/static
+graft Flask_example/templates
+global-exclude *.pyc

@@ -1,0 +1,1 @@
+web qunicorn app:app
